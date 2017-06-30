@@ -1,3 +1,4 @@
+```
 From 5c80be31c2d573cd264f1f3512ece7ed4bd06bac Mon Sep 17 00:00:00 2001
 From: darview_cheng <Darview_Cheng@asus.com>
 Date: Tue, 21 Feb 2017 14:17:11 +0800
@@ -114,3 +115,4 @@ index 10595cb..603715c 100644
  	mac_file_failed_flag = get_mac_address(invaild_mac_flag,mac_buf);
  	country_code_failed_flag = get_country_code(ap_country_buf,sta_country_buf,country_code_str);	//<asus-kevin>150519+
  	fp_source = fopen(WLAN_INI_FILE_SOURCE,"r");
+```
