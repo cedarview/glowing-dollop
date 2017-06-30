@@ -1,0 +1,358 @@
+------------------mac-addrress----70:4d:7b:3d:b4:d7-------
+03-03 10:13:41.389  1518  1974 D WifiNative-wlan0:    returned bssid=1c:b7:2c:10:00:79 freq=2447 ssid=My1111 id=1 mode=station pairwise_cipher=CCMP group_cipher=CCMP key_mgmt=WPA2-PSK wpa_state=COMPLETED ip_address=192.168.43.119 p2p_device_address=72:4d:7b:3d:b4:d7 address=70:4d:7b:3d:b4:d7
+03-03 10:13:41.389  1518  1974 D WifiAutoJoinController : address=70:4d:7b:3d:b4:d7
+03-03 10:15:15.525  2092  2092 D wpa_supplicant: WPA: PTK derivation - A1=70:4d:7b:3d:b4:d7 A2=1c:b7:2c:10:00:79
+03-03 10:08:45.800  1518 23873 D DhcpClient: Received packet: 70:4d:7b:3d:b4:d7 OFFER, ip /192.168.43.119, mask /255.255.255.0, DNS servers: /192.168.43.1 , gateways [/192.168.43.1] lease time 3600, domain null
+##########################################
+
+------------------hades---screen--------
+02-28 23:13:03.175  1635  1635 D VirtualKeyBackLightService: screen on, turn on virtual key LED 2000 ms
+02-28 23:13:03.175  1635  1635 D VirtualKeyBackLightService: flash: turn on virtual key LED
+
+audio_hw_primary: adev_set_parameters: enter: screen_state=on
+01-01 12:02:49.378  1436  1436 I power_screen_state: [1,0,0,0]enableVerboseLogging
+01-01 12:02:49.392   813  1965 V SRS_Proc: ParamSet string: screen_state=on
+01-01 12:02:49.392   813  1965 D audio_hw_primary: adev_set_parameters: enter: screen_state=on
+01-01 12:02:49.393   813  1965 V msm8916_platform: platform_set_parameters: enter: - screen_state=on
+#########################
+
+-------wificontroller-pluggedType-----
+16:25:37.962  1593  2164 D WifiController: battery changed pluggedType: 2
+-------------
+
+---wpa_supplican-state------
+wpa_supplicant: wlan0: State: GROUP_HANDSHAKE -> COMPLETED
+----------------------------
+
+-------------wlan_button---aquarius---------
+ActivityManager: START u0 {flg=0x8000 cmp=com.android.settings/.Settings$WifiSettingsActivity (has extras)} from uid 1000 on display 0
+
+-------------hades-----------------
+03-02 09:01:42.350  3600  3600 D SubSettings: Launching fragment com.android.settings.wifi.WifiSettings
+####################################
+
+----------screen_off------------------------
+WifiStateMachine:  handleScreenStateChanged Enter: screenOn=false mUserWantsSuspendOpt=true state DisconnectedState suppState:DisconnectedState////need enable verbose log
+WifiConnectivityManager: handleScreenStateChanged: screenOn=false
+WifiConnectivityManager: startConnectivityScan: screenOn=false wifiState=2 scanImmediately=false wifiEnabled=true wifiConnectivityManagerEnabled=true
+##################
+
+----------data_saver_close_softap-----------
+NetworkPolicy: setRestrictBackgroundLocked(): true
+ConnectivityService: onRestrictBackgroundChanged(true): disabling tethering//可能跟关热点有一点关系，
+##################
+
+----------pno&&schedule_scan-----------------
+handleConnectionStateChanged: state=(need打开verbos_log)
+WifiConnectivityManager: start a single scan from watchdogHandler
+SupplicantWifiScannerImpl: Force stopping Pno scan
+SupplicantWifiScannerImpl: Start PNO timer with delay 3594
+SupplicantWifiScannerImpl: Starting wifi scan for freqs={2412, 2417, 2422, 2427, 2432, 2437, 2442, 2447, 2452, 2457, 2462, 2467, 2472, 5180, 5200, 5220, 5240, 5745, 5765, 5785, 5805, 5825}, background=false, single=true
+###########33
+
+----------EvaluatingState---------
+case CMD_REEVALUATE:
+egrep -i -r "setwifienabled|NetworkMonitor/NetworkAgentInfo" `ls |tac` |grep -i "wifi"|grep -i -E "wifi|enter|setwifienabled"
+######
+
+-----aquarius--volum--key-------
+vol.Events: writeEvent active_stream_changed STREAM_RING
+WindowManager: interceptKeyTq keyCode=24(24,25,26,,up,down,power)
+WindowManager: beforeDispatching keycode is KEYCODE_APP_SWITCH
+
+//这条log,晚一点，
+gpio key code = 115, volume up pressed up
+#######
+
+---------p2p--aquarius--后看的，有可能有用------
+02-16 19:42:03.388  7439  7439 D wpa_supplicant: p2p0: P2P: GO move: invalid_freq=0, policy_move=0, flags=0x1
+02-16 19:42:33.393  7439  7439 D wpa_supplicant: p2p0: P2P: Cancel a GO move from freq=5220 MHz
+
+02-16 19:45:55.319 17379 17379 D wpa_supplicant: TDLS: TDLS is allowed in the target BSS
+02-16 19:45:55.319 17379 17379 D wpa_supplicant: TDLS: TDLS channel switch allowed in the target BSS
+
+02-16 19:45:56.128 17379 17379 D wpa_supplicant: TDLS: Remove peers on association
+
+02-16 19:45:41.978  1460  1781 D WifiNetworkAgent: NetworkAgent: NetworkAgent channel lost
+02-16 19:45:41.978  7439  7439 D wpa_supplicant: p2p0: Control interface command 'P2P_GROUP_REMOVE p2p0'
+02-16 19:45:41.978  7439  7439 I wpa_supplicant: P2P-GROUP-REMOVED p2p0 GO reason=REQUESTED
+####################
+
+
+----may_switch_network--hades---
+如果是切换网络，会先disconnect然后connect,第一条log出现，不一定会切换网络
+02-17 10:27:18.914  1402  1968 D WifiStateMachine: shouldSwitchNetwork  txSuccessRate=0.00 rxSuccessRate=0.00 delta 49 -> 49
+02-17 10:27:18.961 17251 17251 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=30:5a:3a:cb:39:10 reason=3 locally_generated=1
+02-17 10:27:19.327 17251 17251 I wpa_supplicant: wlan0: CTRL-EVENT-CONNECTED - Connection to 70:62:b8:6f:1f:74 completed [id=1 id_str=]
+
+#########
+
+-----------dhcp-fail-hades--------
+02-08 06:45:26.076  1455  1945 E WifiConfigStore:  message=DHCP FAILURE
+02-08 06:45:26.077  1455  1945 E WifiConfigStore: blacklisted "acbz_dl"-WPA_PSK to 0 due to IP config failures, count=1 disableReason=0 f4:6d:04:6d:89:b9 ipfail=1
+######
+
+-----------signal--rssi-WifiSignalController-----
+02-13 20:08:19.613  2710  2710 D NetworkController.WifiSignalController: Change in state from: connected=true,enabled=true,level=4,inetCondition=1,iconGroup=IconGroup(Wi-Fi Icons),activityIn=true,activityOut=false,rssi=-60,lastModified=02-13 08:08:18,ssid="aquarius329"
+######
+
+
+####no network###3
+Perhaps
+ConnectivityService: Unexpected mtu value
+#####
+
+KERNEL  : [40145.233042] (CPU:5-pid:7079:VosMCThread) wlan: [I :HDD] 38:d5:47:3a:fc:6d connected to 70:62:b8:6f:1f:74
+
+
+mNMService.disableNat(mIfaceName, mMyUpstreamIfaceName);
+12-28 16:30:01.812   763  1596 I QtiConnectivityAdapter: natStopped(tether=wlan0 upstream=rmnet_data0)
+12-28 16:30:01.812   763  1596 I ConnectivityController: void ConnectivityController::natStopped(const char *, const char *)(): Tether Interface: wlan0 Upstream Iface: rmnet_data0
+
+wpa_supplicant:    selected WPA/WAPI AP 50:1c:bf:d7:4c:f0 ssid='Mobile'
+
+HADES处理CMD_TETHER_STATE_CHANGE时会先setHostApRunning(null, false);再setHostApRunning(null, true);即先CMD_STOP_AP,,后CMD_START_AP
+而aquarius只发送一个cmd_stop
+
+
+
+SoftApManager: Untethering before stopping AP
+SoftApManager: Tethering reports wifi as untethered!, shut down soft Ap
+
+
+///connectivityService.untether,,,hades(wifistatemachine,,stopTethering),,aquarius(softapmanager,stopTethering)
+Tethering: Untethering wlan0
+
+-------aqu--softapband--
+5g,don't auto select
+#####
+
+---------softap--------
+CMD INPUT  [set channel=36][255]
+
+hostapd : wlan0: AP-STA-DISCONNECTED 6c:71:d9:51:d6:7f
+--------hades---------
+02-13 12:25:54.571 22664 22664 E KERNEL  : [569625.232676] (CPU:6-pid:22664:VosMCThread) [12:25:54.560719] [00001B3032FE6C29] [VosMC]  wlan: [E :PE ] limProcessAssocReqFrame: 1064: Received Assoc Req  successful from 6c:71:d9:51:d6:7f
+
+02-13 12:25:54.575 22687 22687 I hostapd : wlan0: STA 6c:71:d9:51:d6:7f IEEE 802.11: associated
+02-13 12:25:54.639 22687 22687 I hostapd : wlan0: AP-STA-CONNECTED 6c:71:d9:51:d6:7f
+02-13 12:25:54.639  1668 22759 D WifiHW  : EVENT: AP-STA-CONNECTED 6c:71:d9:51:d6:7f
+
+有一个for Addr可以作为关键词，kernel_log,似乎主动断连都有该log
+Deauth frame for Addr
+
+#####
+
+--------unloaddriver----
+KERNEL  : [  240.402140] (CPU:6-pid:6066:rmmod) wlan: unloading driver v3.0.11.61
+##########
+
+
+--------------tether stop-------------------commandlistner
+TetherController: Stopping tethering services
+
+//softap stop ,,commandlistner
+SoftapController: Stopping the SoftAP service...
+//tether interface remove
+TetherController: untetherInterface(wlan0)
+//ipfwd enable/disable
+TetherController: Setting IP forward enable = 0
+
+##############
+
+
+01-08 19:05:38.924  1440  2858 E OsAgent :  Wifi Scan Always Available: 0
+
+01-08 19:05:38.920 32445 32445 D AndroidRuntime: Calling main entry com.android.commands.svc.Svc
+01-08 19:05:38.925  1440  2858 E OsAgent :  Wifi Scan Always Available: 0
+
+01-08 19:05:43.744  1440  2020 D WifiService: setWifiEnabled: true pid=32463, uid=0
+01-08 19:05:44.384  1769  1769 I KERNEL  : [172846.735236] (CPU:7-pid:1769:WifiStateMachin) wlan: driver loaded
+
+01-08 19:05:55.108  1440  1485 D NetworkManagement: oldRule = 0, newRule=2 for uid=10127 on chain 2
+01-08 19:05:55.174  1440  1766 D ConnectivityService: onUidRulesChanged(uid=10127, uidRules=64)
+
+////quicksettings,,operate(aquarius)
+12-27 20:24:39.017  3246  3655 V AsusSystemUITracker: sendEvents : ( BEHAVIOR_TRACKER,v2 Quick settings, set , Hotspot, null )
+
+12-28 13:56:54.054  2500  3127 E SoftApManager: Untether initiate failed!
+
+--------------5-min---------------------
+WifiVerizonReceiver: onReceive() - action : android.intent.action.DISABLE_SOFTAP
+
+ActivityManager: Sending non-protected broadcast android.intent.action.DISABLE_SOFTAP from system uid 1000 pkg android
+//public static final int WIFI_AP_STATE_DISABLING = 10;(Hades)
+Tethering: WIFI_AP_STATE_CHANGED: wifiApState=10
+WifiService: wifiApState=10
+#########################################
+
+----------------点击tethering & portable时------------------------
+WirelessSettings: onPreferenceTreeClick: preference=Tethering & portable hotspot
+SubSettings: Launching fragment com.android.settings.TetherSettings
+
+hostapd : wlan0: AP-DISABLED 
+
+StatusBar: onNotificationRemoved: StatusBarNotification(pkg=com.asus.mobilemanager
+
+###########################
+
+
+----------------------p2p--------------
+WirelessSettings: onPreferenceTreeClick: preference=PlayTo Connect to wireless player
+//点击连接后
+PlayToPreferenceFragment: onPreferenceTreeClick()
+PlayToService: remoteTarget is a Wfd instance. Try to connect to CH_2.0.30_1.3.0_13300_BA96
+wpa_supplicant: p2p0: AP-STA-CONNECTED a6:db:30:c7:ba:96 p2p_dev_addr=a6:db:30:c7:ba:96
+wpa_supplicant: nl80211: Drv Event 20 (NL80211_CMD_DEL_STATION) received for p2p0
+15:10:38.874 10010 10010 D wpa_supplicant: p2p0: Control interface command 'P2P_GROUP_REMOVE p2p0'
+wpa_supplicant: p2p0: Event DISASSOC (1) received
+15:10:37.702  1381  1771 D WifiP2pService: Removed client a6:db:30:c7:ba:96
+wpa_supplicant: hostapd_logger: STA a6:db:30:c7:ba:96 - unauthorizing port
+15:10:38.875 10010 10010 D wpa_supplicant: p2p0: State: COMPLETED -> DISCONNECTED///(State: %s -> %s)
+wpa_supplicant: nl80211: Teardown AP(p2p0) - device_ap_sme=1 use_monitor=0
+
+darviw@darviw:~/桌面/work/inprocess/930258-p2p-disconnect$ grep -i -n -E "wpa_supplicant: p2p0: CTRL-EVENT" p2pdisconnectwithconnectto12345678.txt 
+3:15:10:39.573 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-DISCONNECTED bssid=3a:d5:47:8d:5d:a8 reason=3 locally_generated=1
+39559:01-17 15:03:22.360 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-CONNECTED - Connection to 3a:d5:47:8d:5d:a8 completed [id=0 id_str=]
+39912:01-17 15:03:23.108 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+39959:01-17 15:03:23.150 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-EAP-STARTED a6:db:30:c7:ba:96
+39964:01-17 15:03:23.150 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=1
+40176:01-17 15:03:24.669 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-EAP-STARTED a6:db:30:c7:ba:96
+40181:01-17 15:03:24.670 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=1
+40222:01-17 15:03:24.676 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=14122 method=254
+40678:01-17 15:03:26.347 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-EAP-FAILURE a6:db:30:c7:ba:96
+41215:01-17 15:03:28.119 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+73346:01-17 15:10:39.573 10010 10010 I wpa_supplicant: p2p0: CTRL-EVENT-DISCONNECTED bssid=3a:d5:47:8d:5d:a8 reason=3 locally_generated=1
+##########################################
+
+----------------wifi-disconnect-----------
+grep -i -E "ctrl-event-disconnected .* reason|ctrl-event-c|Deleting station:|SME due to Missed beacon from FW|Received Heart Beat Failure" `ls|tac`
+grep -i -E "ctrl-event-disconnected|Deleting station:|Missed beacon from FW|Received Heart Beat Failure|Received Deauth frame|ctrl-event-con|WifiConfigStore:  message=DHCP FAILURE|Lost IP layer provisioning|confirmed lease|setwifiena|Received Disassoc frame for Addr"
+------------------------------------------
+04-17 11:06:34.273  1975  1975 E KERNEL  : [80694.144870] (CPU:5-pid:1975:VosMCThread)[11:06:34.207576] [0000049B2002F578] [VosMC]  wlan: [E :PE ] limHandleMissedBeaconInd: 2200: Sending EXIT_BMPS_IND to SME due to Missed beacon from FW
+04-17 10:40:01.707  1975  1975 E KERNEL  : [80362.381481] (CPU:5-pid:1975:VosMCThread)[10:40:01.641305] [000004940176CF1E] [VosMC]  wlan: [E :PE ] limDeleteStaContext: 118:  Deleting station: staId = 3, reasonCode = 1
+04-17 14:04:31.490  1982  1982 D wpa_supplicant: nl80211: Drv Event 48 (NL80211_CMD_DISCONNECT) received for wlan0
+--------------uncertain-----------------
+04-17 16:26:51.576  1975  1975 E KERNEL  : [88124.947206] (CPU:6-pid:1975:VosMCThread) [16:26:51.575020] [000004F108A0E2F7] [VosMC]  wlan: [E :PMC] pmmInitBmpsResponseHandler: 261: pmmBmps: BMPS_INIT_PWR_SAVE_REQ failed, informing SME
+04-17 16:26:51.576  1975  1975 E KERNEL  : [88124.947248] (CPU:6-pid:1975:VosMCThread) [16:26:51.575063] [000004F108A0E628] [VosMC]  wlan: [E :PMC] pmmInitBmpsResponseHandler: 278: Unexpected heartbeat timer not running
+04-17 16:26:52.436  1975  1975 E KERNEL  : [88125.806342] (CPU:4-pid:1975:VosMCThread) [16:26:52.434152] [000004F1099C95D8] [VosMC]  wlan: [E :PE ] limHandleMissedBeaconInd: 2210: Received Heart Beat Failure
+04-17 16:26:52.436  1975  1975 E KERNEL  : [88125.806397] (CPU:4-pid:1975:VosMCThread) [16:26:52.434212] [000004F1099C9A60] [VosMC]  wlan: [E :PE ] limMissedBeaconInActiveMode: 2373: Heartbeat failure from Riva
+04-17 16:26:52.476  1975  1975 E KERNEL  : [88125.838725] (CPU:4-pid:1975:VosMCThread) [16:26:52.466533] [000004F109A61291] [VosMC]  wlan: [E :PE ] limHandleHeartBeatFailureTimeout: 7349: Probe_hb_failure: SME 12, MLME 16, HB-Count 0 BCN count 3
+04-17 16:26:52.476  1975  1975 E KERNEL  : [88125.838905] (CPU:4-pid:1975:VosMCThread) [16:26:52.466720] [000004F109A62075] [VosMC]  wlan: [E :PE ] limHandleHeartBeatFailureTimeout: 7366: Probe_hb_failure: for session:0
+04-17 16:26:52.496  1975  1975 E KERNEL  : [88125.867570] (CPU:4-pid:1975:VosMCThread) [16:26:52.495378] [000004F109AE85C6] [VosMC]  wlan: [E :HDD] wlan: disconnected
+##########################################
+
+////scorpio screen on/off
+01-22 15:41:41.097   488   488 I KERNEL  : [52112.974780] (CPU:7-pid:488:surfaceflinger) [Display] mdss_dsi_panel_on: ++
+01-22 15:41:41.097   488   488 I KERNEL  : [52113.116622] (CPU:7-pid:488:surfaceflinger) [Display] mdss_dsi_panel_on: --
+01-22 15:41:45.605   488   488 I KERNEL  : [52117.480958] (CPU:5-pid:488:surfaceflinger) [Display] mdss_dsi_panel_off: ++
+01-22 15:41:45.605   488   488 I KERNEL  : [52117.612225] (CPU:7-pid:488:surfaceflinger) [Display] mdss_dsi_panel_off: --
+
+//hades
+mdss_dsi_panel_bklt_dcs: level=
+######
+
+dl_list_for_each_safe
+---------rssi--------
+02-08 09:40:08.440  3675  3675 D NetworkController.WifiSignalController: 	to: connected=true,enabled=true,level=2,inetCondition=1,iconGroup=IconGroup(Wi-Fi Icons),activityIn=false,activityOut=true,rssi=-73,lastModified=02-08 09:40:04,ssid="QuieTek"
+02-08 09:40:09.449  2924  3561 D WifiWatchdogStateMachine: RSSI current: 2 new: -82, 1
+############
+
+------------hotspot_show_user-------------
+04-24 11:11:15.759  3389 14475 D WifiHW  : EVENT: AP-STA-CONNECTED 00:0a:f5:af:81:c4
+##########################################
+
+
+
+wlan: WCNSS WLAN version 1.5.1.2
+
+grep -i -r -n -E ", shut down soft Ap|wifiApState=10|Untether initiate failed|AP-DISABLED|AP-enABLED|cnss-daemon: Failed to find ind_table for type 108" `ls |tac`
+
+
+
+-------------------------------networkManageMentService----------
+executeOrLogWithMessage---->commnadListener
+
+---------
+    public static NetworkManagementService create(Context context) throws InterruptedException {
+        return create(context, NETD_SERVICE_NAME);
+    }
+
+    static NetworkManagementService create(Context context, String socket)
+            throws InterruptedException {
+        final NetworkManagementService service = new NetworkManagementService(context, socket);
+        final CountDownLatch connectedSignal = service.mConnectedSignal;
+        if (DBG) Slog.d(TAG, "Creating NetworkManagementService");
+        service.mThread.start();
+        if (DBG) Slog.d(TAG, "Awaiting socket connection");
+        connectedSignal.await();
+        if (DBG) Slog.d(TAG, "Connected");
+        service.connectNativeNetdService();
+        return service;
+    }
+
+    private NetworkManagementService(Context context, String socket) {
+        mContext = context;
+
+        // make sure this is on the same looper as our NativeDaemonConnector for sync purposes
+        mFgHandler = new Handler(FgThread.get().getLooper());
+
+        // Don't need this wake lock, since we now have a time stamp for when
+        // the network actually went inactive.  (It might be nice to still do this,
+        // but I don't want to do it through the power manager because that pollutes the
+        // battery stats history with pointless noise.)
+        //PowerManager pm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wl = null; //pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, NETD_TAG);
+
+        mConnector = new NativeDaemonConnector(
+                new NetdCallbackReceiver(), socket, 10, NETD_TAG, 160, wl,
+                FgThread.get().getLooper());
+        mThread = new Thread(mConnector, NETD_TAG);
+
+        mDaemonHandler = new Handler(FgThread.get().getLooper());
+
+        // Add ourself to the Watchdog monitors.
+        Watchdog.getInstance().addMonitor(this);
+    }
+---------
+CommandListener::CommandListener() :
+                 FrameworkListener("netd", true) 
+---------
+
+-----selinux----
+05-10 10:21:08.439  9370  9370 W hostapd_cli: type=1400 audit(0.0:513749): avc: denied { read write } for path="socket:[1347800]" dev="sockfs" ino=1347800 scontext=u:r:hostapd:s0 tcontext=u:r:cnd:s0 tclass=unix_dgram_socket permissive=0
+
+allow hostapd cnd:unix_dgram_socket { read write };
+
+grep -i -E -r "wcnss_service.*shell_exec|hostapd.*cnd|wpa.*asus_prop"
+----------------
+
+--------alwaysOn--------
+06-09 14:59:00.032  1961  1961 I TextClock: receiver IsAlwaysOnEnable= false
+------------------------
+
+--------network-change----
+ConnectivityService: NetworkAgentInfo [MOBILE (LTE) - 1142] EVENT_NETWORK_INFO_CHANGED, going from null to CONNECTED
+-------------
+
+#######
+
+
+
+
+
+1034612
+
+265.com
+
+
+
+
+
+
+
+
+
+
+
+

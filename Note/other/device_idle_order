@@ -1,0 +1,37 @@
+adb shell dumpsys battery unplug
+adb shell dumpsys deviceidle step
+adb shell dumpsys battery reset
+adb shell dumpsys deviceidle get [light|deep|force|screen|charging|network]
+adb shell dumpsys deviceidle -h
+
+dumpsys battery set level 92
+Settings.Global.getString(mResolver,"device_idle_constants")
+Settings.Global.getUriFor
+
+
+addPowerSaveWhitelistAppInternal
+adb shell dumpsys deviceidle whitelist +com.example.myapplication
+
+
+adb shell cmd netpolicy
+
+am get-inactive com.tencent.mm
+dumpsys deviceidle whitelist -com.tencent.mm
+
+
+u0_a134   14965 2393  1716888 73220 SyS_epoll_ 00f56bf458 S com.tencent.qqmusic
+
+iptables -I INPUT 1 -m owner --uid-owner 10134 -j DROP
+
+AlarmManager.ELAPSED_REALTIME_WAKEUP，真实时间流逝闹钟，当闹钟发躰时唤醒手机休眠；
+
+dumpsys package com.tencent.mm |grep -i userid
+cat data/system/packages.xml |grep tencent
+
+---------------sorpio_rel---------------
+PRODUCT_COPY_FILES += \
+ $(ANDROID_PARTNER_GMS_HOME)/etc/sysconfig/google.xml:system/etc/sysconfig/google.xml
+--------
+/vendor/app-prebuilt/ZC551KL/google/etc/sysconfig
+----------------------------------------
+

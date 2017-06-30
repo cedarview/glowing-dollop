@@ -1,0 +1,496 @@
+8937 scorpio
+8953 hades--c9,,aquarius
+sr->er->pr
+log
+wpa_printf(MSG_DEBUG, "darview,in else if ,,reconnect,,requestconection");
+/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+
+dumpsys power
+
+//wlan.ko -> /system/lib/modules/pronto/pronto_wlan.ko
+insmod /system/lib/modules/wlan.ko
+/system/bin/wpa_supplicant -i p2p0 -Dnl80211 -c /data/misc/wifi/p2p_supplicant.conf -N -i wlan0 -Dnl80211 -c /data/misc/wifi/wpa_supplicant.conf -dddd -e /data/misc/wifi/entropy.bin & 
+wpa_cli -i wlan0 -p /data/misc/wifi/sockets/
+
+out/target/product/Z018/system/lib64/libwifi-service.so
+
+fastboot flash system system.img
+
+gedit .repo/manifest.xml
+git log --oneline 
+git log --oneline --author=vector
+
+./out/host/linux-x86/bin/adb version
+./host/linux-x86/bin/adb disable-verity
+
+git blame src/drivers/driver_nl80211.c|grep use_monitor
+
+grep "amain" . -r -n -i
+find . -name "*.c" | xargs grep "abcdef"
+
+cd /media/darviw/74e5d475-b94d-4b7e-a0a3-f400f8d23b3b/darview/workstation
+
+----------freeradius---------------
+sudo apt-get install libtalloc-dev
+----------------------------------
+
+------查看文件大小--------
+du -h --max-depth=1
+##############
+
+-------代理设置--------
+172.16.98.104 3128
+#################
+
+-------driver_log--------
+persist.asus.wifiDriverDebug
+##########
+
+sing boot
+1.设置账号。
+
+    1-1.登录redminem,我的账户-->API存取金钥-->显示，
+
+        复制API存取金钥
+
+    1-2.$ cd device/asus/sign_via_server
+
+           $ fdcsigner/fdcsigner setfdcaccount
+
+        account:<your_name>////darview_cheng
+
+        password:<api on redmine>////fa13345761134ba882192f1972016956f375dda8
+
+selinux
+/media/darviw/mount/8937/bsp-scorpio/device/qcom/sepolicy/common
+
+
+git push [remote] HEAD:refs/drafts/[branch]
+	ssh://172.29.0.92
+git push ssh://172.29.0.92 HEAD:refs/drafts/[branch]
+
+git format-patch -1  commitID
+patch –p1 < xxx.patch
+git apply  xxx.patch 
+
+source build/envsetup.sh 
+lunch
+mm
+
+gedit .repo/manifest.xml
+git log --oneline 
+
+sudo adb reboot bootloader
+//uart
+
+sudo adb reboot bootloader
+cd workstation/
+cd out/target/product/Z00L/
+ls
+sudo fastboot flash aboot emmc_appsboot.mbn
+cutcom
+///  change dmesg to /dev/ttyUSB0
+///  opendevice
+///  sudo fastboot reboot
+
+javah -bootclasspath /media/darviw/u16/darview/sdk/android-sdk/platforms/android-21/android.jar -classpath bin/classes -d jni com.example.hello.Myndk
+ndk-build clean
+
+adb shell:
+cd sys/class/gsensor/INV/mpu6515/
+
+cat proc/interrupts  
+
+//api
+make update-api
+//Try increasing heap size with java option '-Xmx<size>'.
+//Warning: This may have produced partial or corrupted output.
+export JACK_SERVER_VM_ARGUMENTS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4096m"
+out/host/linux-x86/bin/jack-admin kill-server
+out/host/linux-x86/bin/jack-admin start-server
+
+
+
+----------keep_screen_on--------
+adb shell svc power stayon true
+-------------------------------
+
+
+
+
+
+
+
+
+#define USB_SERIAL_PATH "/sys/class/android_usb/android0/iSerial"
+int write_serialno2kernel(char*result)
+{
+	int fd;
+	if ((fd = open(USB_SERIAL_PATH, O_WRONLY)) < 0) {
+		return -1;
+	}
+	if (write(fd,result,strlen(result)) < 0) {
+        close(fd);
+        return -1;
+    }
+    close(fd);
+	return 0;
+}
+write_serialno2kernel("shiwo");
+
+
+
+
+
+
+修正代码后提交
+echo “fixed” >> readme.txt
+git add -u
+git commit --amend
+git push [remote] HEAD:refs/for/[branch]
+
+
+
+adb reboot bootloader
+sudo fastboot devices
+
+sudo fastboot flash aboot emmc_appsboot.mbn
+sudo fastboot flash boot boot.img
+sudo fastboot flash system system.img
+sudo fastboot flash userdata userdata.img
+sudo fastboot flash persist persist.img
+sudo fastboot flash recovery recovery.img
+
+sudo fastboot reboot
+
+
+adb remount
+
+  adb push framework-res.apk /system/framework/
+
+adb pull /asdf/ASUSEvtlog.txt
+
+
+静态方式实现JNI
+1.编写 Java 代码
+建立一个 Android 应用工程 HelloJni，创建 HelloJni.java 文件：
+2.用 eclipse 编译该工程，生成相应的.class文件
+3.生成相应.h文件：
+	打开终端，切换到工程所在目录
+	javah -bootclasspath /media/darviw/u16/darview/sdk/android-sdk/platforms/android-21/android.jar -classpath bin/classes -d jni com.example.hello.Myndk
+	ndk-build clean
+
+	-bootclasspath指定一个android.jar包///當遇到无法访问android.app.Activity時
+	-classpath：后面接“类的路径”。
+	-d : 后面接“生成的头文件存放的目录”，d表示destination。
+	com.example.hellojni.HelloJni：是完整类名。
+上诉命令生成的的.h文件路径：jni/com_skywang_ndk_Myndk.h
+4.实现头文件中声明的函数
+5.编写实现函数对应的Android.mk
+	在 jni 目录下（即hello-jni.c同级目录下）新建一个Android.mk文件
+	LOCAL_PATH := $(call my-dir)
+ 
+	include $(CLEAR_VARS)
+
+	LOCAL_MODULE    := hello_jni
+	LOCAL_SRC_FILES := hello_jni.c
+     
+	include $(BUILD_SHARED_LIBRARY)
+6.编译生成库文件
+	进入到工程所在目录，执行ndk-build
+
+
+
+
+
+在android工程的根目录使用javah生成jni 头文件时候，报找不到android.app.Activity的类文件错误。
+
+无法访问android.app.Activity是说明没有引入android.jar包
+
+这边有两种方式可以解决:
+
+第一种：在src目录执行命令，javah -d ../jni com.example.hellojni.HelloJni
+
+       其中-d表示输出目录
+
+第二种:使用 bootclasspath参数，让他指定一个android.jar包
+
+     如:javah -classpath bin/classes -bootclasspath D:\android-sdk-windows\platforms\android-16\android.jar  -d jni com.example.hellojni.HelloJni
+
+
+repo:::
+安装repo
+$ git clone ssh://10.64.58.7/git-repo -b asussz_server
+$ sudo cp ./git-repo/repo /bin/
+
+初始化manifest 
+$ repo init -u ssh://10.64.58.7/manifest.git -b training/2015
+
+同步项目
+$ repo sync -c -d
+建立本地分支
+
+$ repo start <newbranchname> --all
+
+
+检查状态
+$ repo status
+从本地repo库把文件checkout到工作目录
+repo sync –l
+
+
+
+//自動掛載硬盤
+sudo gedit /etc/fstab
+
+# /media/darviw/u16 was on /dev/sda6 during installation
+/dev/sda6 /media/darviw/u16           ext4    defaults        0       0
+
+(1)设备文件名称
+可以是设备文件名称（即/dev/xxx），也可以是设备的label或uuid。建议用设备文件名称
+
+(2)挂载目录
+略
+
+(3)文件系统类型
+ubuntu14.04上用的最多的是ext4
+
+(4)挂载选项
+一般设置为defaults
+
+(5)是否备份
+一般设置为0，即不备份
+
+(6)开机时是否对文件系统进行自检
+
+一般设置为2。如果不想自检，那就设置为0，挂载点为根目录的设备，设置为1，其它需要自检的设备，设置为2
+
+elipse中的android工程複製到packages/experimental中，修改string.xml...
+错误: 类重复: com.example.mytestservice.R public final class R。。。。。刪除gen目錄
+
+mmm packages/experimental/mytestservice
+make snod
+
+flash
+把其中的libflashplayer.so文件移到/usr/lib/mozilla/plugins目录下。
+4. 将usr/目录下所有文件拷到/usr下
+
+sudo nautilus
+複製文件到
+/home/darviw/.purple/certificates/x509/tls_peers
+
+右键打开终端
+sudo apt-get install nautilus-open-terminal
+注销
+
+設備
+http://eqm.asus.com/
+
+打印机
+\\172.29.0.40
+6f-xi(pad)-Print
+
+repo init -u ssh://10.64.58.7/manifest -b dev/8937/asus/7.0-2.10.0
+repo init -u ssh://10.64.58.7/manifest -b dev/8937/asus/7.0-2.10.0
+
+4. Jack “Out of memory error”
+Try increasing heap size with java option '-Xmx<size>'
+可以修改Jack的配置文件prebuilts/sdk/tools/jack-admin中的变量JACK_SERVER_VM_ARGUMENTS，添加参数 -Xmx4096m
+JACK_SERVER_COMMAND="java -XX:MaxJavaStackTraceDepth=-1 -Djava.io.tmpdir=$TMPDIR $JACK_SERVER_VM_ARGUMENTS -Xmx4096m -cp $LAUNCHER_JAR $LAUNCHER_NAME"
+重新启动jack-server：
+$ ./prebuilts/sdk/tools/jack-admin stop-server
+重新make会自动启动jack-server或者接5，使用命令启动。
+
+5.android build  Communication error with Jack server (52)
+使用命令启动jack-server
+jack-admin start-server
+
+git blame service/java/com/android/server/wifi/WifiStateMachine.java |grep "ASUS_EVENT_STA_CONNECTED"
+git show 5ab70d4c
+
+repo forall -c "git checkout . "
+repo forall -c git reset --hard HEAD
+repo forall -c 'git reset --hard HEAD;git clean -df;git rebase --abort'
+
+repo forall -c "git log --grep='add for the softap 2GHz/5GHz band select'"
+repo forall -p -c "git log --grep='add for the softap 2GHz/5GHz band select'"
+
+git回退之后想在回退到之前版本可以使用
+git reflog 查看之前的提交，再回退即可
+
+
+安装JDK：
+	
+sudo apt-get install openjdk-7-jdk
+
+	然后在~/.bashrc文件中添加：
+	export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+	export JRE_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
+	export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+	export PATH=$HOME/bin:$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+	export ANDROID_JAVA_HOME=$JAVA_HOME
+
+source ~/.bashrc
+
+
+----wapi
+https://192.168.1.200:8759  default,,到无线网络进行设置
+登入https://192.168.1.200:8758  用戶名和密碼都為 asadmin
+
+####wapi
+
+
+####cherry-pick
+repo sync ./
+git branch -a
+git branch -a |grep "rel"
+git checkout remotes/caf/rel/8953/asus/7.0.1-20.40.0
+git cherry-pick 4eae1186a70418332d752c14b8241ae0e7d4e57d
+git push ssh://172.29.0.92/8953/platform/frameworks/opt/net/wifi HEAD:refs/for/rel/8953/asus/7.0.1-20.40.0
+#####
+
+adb push out/target/product/Z018/system/framework/wifi-service.jar /system/framework/
+
+###Log
+transitionto:////statemachine,,mdebug
+###
+
+###qcom register
+https://createpoint.qti.qualcomm.com/dashboard/public/productkit#public/product-kit/search
+Organization Number:120153
+....
+###
+
+####环境配置
+http://source.android.com/source/initializing.html
+#####
+
+grep -E "hostapd : wlan0:|STA a4:44:d1:a1:1a:2c IEEE 802.11: disassociated" logcat.txt.07
+#####reason code###
+typedef enum eSirMacReasonCodes
+#####
+
+
+-----memory info---
+sudo dmidecode | grep -A16 "Memory Device"|grep 'Speed'
+sudo dmidecode|grep -P -A 5 "Memory\s+Device" | grep Size
+######
+-----net-----网络----------
+sudo gedit /etc/NetworkManager/system-connections/以太网连接\ 1
+
+cat /proc/net/dev 
+ndc interface list
+
+####reasoncode
+typedef enum eSirMacReasonCodes
+######
+
+#######myordertofind
+cat `ls |grep logcat.txt.01` |awk '{print $2}'|cut -d ":" -f 3
+awk '{print $2}' logcat.txt.01 |cut -d ":" -f 3
+egrep -i -r -n "hostapd : wlan0: AP-enabled|: wlan0: AP-disabled|hostapd : wlan0: AP-STA-" `ls |tac`
+
+
+sh /home/darviw/logcat/grep.sh 71006 80064 "SoftApManager:|hostapd : wlan0: AP|SoftapController:" "logcat.txt.01"
+sh /home/darviw/logcat/grep.sh 71006 80064 "shut down soft Ap|Untether initiate failed|SoftApManager:|hostapd : wlan0: AP|SoftapController:" "logcat.txt.01" |grep -E -i "SoftApManager:|hostapd : wlan0: AP|SoftapController:|Untether initiate failed|shut down soft Ap"
+------------------
+
+----------cnss firmware version----
+getprop wifi.version.driver
+#####
+
+------meta_build_version----  
+先在project,,list下面搜firmware
+1.http://172.29.0.92:8443/#/admin/projects/8953/qcom_firmware,branches
+project->branches
+refs/meta/config
+2.8953-spf2.0-r05000.1	fd9156f785a1fee083bcdd01a0b89b982e4c606b(gitweb)
+3.点击gitweb,再点击上面的tree
+4.-rw-r--r-- 	4530 	about.html 	blob | history | raw 点击raw
+5.右键保存，再打开
+#########
+
+-------code---------
+-------------------phoenix------------
+repo init -u ssh://10.64.58.7/manifest -b qcom/8953/a70/bsp-7.1.1
+./mkimage Z01M build_eng
+#########################
+
+------------------8937 scorpio N dev----------
+repo init -u ssh://10.64.58.7/manifest -b dev/8937/asus/7.0-2.10.0
+lunch msm8937-userdebug
+msm8937代表scorpio，Z01C代表capricorn
+########################
+
+------------------aquarius---------------
+repo init -u ssh://10.64.58.7/manifest -b qcom/8953/a70/bsp
+########################
+
+#########
+
+-------------------openGrok----------------------
+  $ OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=/tank/opengrok \
+       ./OpenGrok index /tank/source
+
+OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=/home/darviw/tools/opengrok-0.12.1.6/opengork_new ./OpenGrok index /home/darviw/tools/opengrok-0.12.1.6/source_aqu_rel2040/aqu_rel7.0.1-20.40.0
+
+ln -s /home/darviw/tools/opengrok-0.12.1.6/opengork_new/etc/configuration.xml /var/opengrok/etc/configuration.xml
+
+//./OpenGrok是bin下脚本
+OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=/home/darviw/tools/opengrok-0.12.1.6/opengrok_temp ./OpenGrok index /home/darviw/tools/opengrok-0.12.1.6/Source_Google_Master/google_Master
+
+
+-----对应关系--------------
+aqu_rel7.0.1-20.40.0---->opengrok_temp
+google_master-------->OpenGrok_Master
+source---------->opengrok_Phoenix_Dev7.1.1-3.1.10_mobileManager
+#################################################
+
+-------proxy.local----3128---
+172.16.98.104
+172.16.98.105
+-----------------------------
+
+-------image-mount--
+simg2img  system.img  system.img.ext4
+mkdir tmp
+sudo mount -t ext4 -o loop  system.img.ext4 tmpsudo mount -t ext4 -o loop  system.img.ext4 tmp
+--------------------
+
+----------JAVADOC--------
+javadoc -private com.android.server -d /home/darviw/桌面/hello/javadoc_new_NEW/ -docencoding GBK
+-------------------------
+
+-------build_cn---------
+./mkimage msm8937 build_debug TARGET_SKU=CN
+sleep 5m ;rm -rf Image/*;./mkimage Z01H build_debug TARGET_SKU=CN ; (zenity --info --title "build info" --text "work done" --width=300 --height=200)
+
+rm -rf out/target/product/Z01H/*-ota* out/target/product/Z01H/UL-*;rm -rf Image/*;./mkimage Z01H build_debug TARGET_SKU=CN ; (zenity --info --title "build info" --text "work done" --width=300 --height=200)
+------------------------
+
+------弹对话框-----
+(zenity --info --title "Build Information" --text "build work done" --width=300 --height=200)
+------------
+
+-----git-----
+git log --stat -p AlwaysOnController.java
+--------------
+
+-------
+make services
+-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
