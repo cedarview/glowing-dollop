@@ -62,6 +62,31 @@
     }
 
     public void qSort(int array[],int left,int right){
+        if(left<right){
+            int pivot = array[left];
+            int i=0;
+            int j=left+1;
+            while (j<=right) {
+                while (array[j] > pivot) {
+                    j++;
+                }
+                int tmp =array[i+1];
+                array[i+1] = array[j];
+                array[j]=tmp;
+                i++;
+                j++;
+            }
+
+            array[left]=array[i];
+            array[i]=pivot;
+
+            qSort(array,left,i-1);
+            qSort(array,i+1,right);
+
+        }
+    }
+
+    public void qSort1(int array[],int left,int right){
 
         if(left<right) {
             int pivot = array[left];
