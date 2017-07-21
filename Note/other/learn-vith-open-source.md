@@ -1,4 +1,8 @@
+https://github.com/zhuangbiaowei/learn-with-open-source
+
 git clone https://github.com/zhuangbiaowei/learn-with-open-source.git
+
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.py | sudo python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()"
 
 sudo npm cache clean -f
 
